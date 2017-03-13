@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>wema rehub system</title>
+<link rel="stylesheet" type="text/css" href="style/mystyle_login.css">
+<style>
+#content {
+height: auto;
+}
+#main{
+height: auto;}
+</style>
+</head>
+<body>
+<div id="content">
+<div id="header">
+<h1><img src="images/hd_logo.jpg">wema rehab system</h1>
+</div>
+
+
+
+
+<?php 
+session_start();
+include("connect_db.php");
+include("header.php");
+include("validation/header.php"); 
+include("functions/patient.php");
+$dt= "$_POST[year]-$_POST[month]-$_POST[date]";
+
+$resultpatientrec = mysql_query("SELECT * FROM treatment ");
+
+  
+  ?>
+  <div id="main">
+
+  <section class="">
+  
+     <div class="content">
+  <div align="center"><strong><u>tretmentsrecords </u></strong></div>
+<p>&nbsp;</p>
+      <table width="40" border="1">
+	  
+	 
+       
+        <tr>
+          <th width="12" height="30" scope="col"><font color="#0000FF">treatmentid</font></th>
+          <th width="16" scope="col"><font color="#0000FF">doctorid</font></th>
+		  <th width="8" scope="col"><font color="#0000FF">treatmentfee</font></th>
+          <th width="10" scope="col"><font color="#0000FF">treatment</font></th>
+          <th width="13" scope="col"><font color="#0000FF">date</font></th>
+          <th width="15" scope="col"><font color="#0000FF">time</font></th>
+          <th width="11" scope="col"><font color="#0000FF">appointmentid</font></th>
+          <th colspan="" scope="col">Action</th>
+          
+          
+        </tr>
+		 <?php
+		  
+          while($row= mysql_fetch_array($resultpatientrec))
+  {
+	 
+	  ?> 
+         <tr>
+          <td height="40"><?php echo $row["treid"]; ?></td>
+          <td><?php echo $row["docid"]; ?></td>
+		 <td><?php echo $row["treatfee"]; ?></td>
+          <td><?php echo $row["treatment"]; ?></td>
+          <td><?php echo $row["date"]; ?></td>
+          <td><?php echo $row["time"]; ?></td>
+          <td><?php echo $row["appointid"]; ?></td>
+          <td><a href="patientmorereport1.php?paid=<? ?>" ><img src="images/more.jpg"  /></a></td>
+          
+        </tr>
+  
+		 <?php
+          }
+		  ?>
+      </table>
+	   </div>
+
+		</div>
+    <div id="footer" align="Center"> wema rehub system. Copyright All Rights Reserved</div>
+</div>
+
+</body>
+</html>
+
